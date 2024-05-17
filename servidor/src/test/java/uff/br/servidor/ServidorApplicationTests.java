@@ -1,10 +1,10 @@
-package uff.com.server;
+package uff.br.servidor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServerApplicationTests {
+class ServidorApplicationTests {
 
 	@Test
 	void contextLoads() {
