@@ -2,7 +2,7 @@
 
 ## Fluxo de Trabalho no Gitflow
 
-OBS: SEGUIR COMMITS DE ACORDO COM O SITE["https://dev.to/varbsan/a-simplified-convention-for-naming-branches-and-commits-in-git-il4"]
+OBS: SEGUIR COMMITS DE ACORDO COM O [SITE]("https://dev.to/varbsan/a-simplified-convention-for-naming-branches-and-commits-in-git-il4")
 
 ### Passos
 
