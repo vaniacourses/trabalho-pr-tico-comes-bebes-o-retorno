@@ -11,6 +11,7 @@ export function GerenciarRestaurante() {
                 <Produto/>
                 <Produto/>
                 <Produto/>
+                <Produto/>
             </div>
         </div>
     )

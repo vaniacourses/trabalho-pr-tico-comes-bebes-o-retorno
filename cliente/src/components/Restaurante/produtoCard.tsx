@@ -22,7 +22,7 @@ export function Produto() {
                 <CardDescription className="text-base" >Carne e queijo</CardDescription>
             </CardHeader>
             <CardContent>
-                {/* <img src={Lanche} alt="Lanche" /> */}
+                <img src={Lanche} alt="Lanche" className="object-cover rounded-md"/>
             </CardContent>
             <CardFooter className="flex flex-row justify-between">
                 <EdicaoProdutoModal/>
