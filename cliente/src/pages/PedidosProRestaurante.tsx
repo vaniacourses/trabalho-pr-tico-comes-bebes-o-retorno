@@ -5,9 +5,27 @@ import { Card,
     CardFooter,
     CardHeader,
     CardTitle,} from "@/components/ui/card"
+import { useState } from "react";
 
 export function PedidosProRestaurante() {
+    const [status, setStatus] = useState<String>('Pendente');
+    const [buttonStatus, setButtonStatus] = useState<String>('Aceitar Pedido');
 
+    function handleStatusChange() {
+      switch (status) {
+        case 'Pendente':
+          setStatus('Preparando');
+          setButtonStatus('Saiu pra entrega');
+          break;
+        case 'Preparando':
+          setStatus('Saiu pra entrega');
+          setButtonStatus('Entregue');
+          break;
+        case 'Saiu pra entrega':
+          setStatus('Entregue');
+          break;
+      }
+    }
 
     const getStatusClass = (status:String) => {
         switch (status) {
@@ -39,10 +57,12 @@ export function PedidosProRestaurante() {
                         <li className="italic font-medium text-base" >1x Coca-Cola</li>
                     </ul>
                     <p className="mt-2 text-2xl"><strong>Total:</strong> R$35,00</p>
-                    <p className="mt-2 text-xl">Pendente</p>
+                    <div className="border-2 inline-block p-1 border-orange-500 mt-2">
+                      <p className=" text-xl  text-orange-500">{status}</p>
+                    </div>
                 </CardContent>
                 <CardFooter className="p-4 flex flex-row gap-5 border-t">
-                    <Button className="text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white">Aceitar Pedido</Button>
+                    <Button onClick={handleStatusChange} className="text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white ">{buttonStatus}</Button>
                     <Button className="text-red-600 border-2 border-red-600 hover:bg-red-600 hover:text-white">Cancelar</Button>
                     <Button className="text-blue-600 border-2 border-blue-600 hover:bg-blue-600 hover:text-white">Mais Detalhes</Button>
                 </CardFooter>
