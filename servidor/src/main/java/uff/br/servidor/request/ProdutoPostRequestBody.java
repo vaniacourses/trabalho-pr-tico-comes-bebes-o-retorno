@@ -13,5 +13,8 @@ public class ProdutoPostRequestBody {
     private String nome;
     private String descricao;
     private double preco;
+    private int estoque;
+    private String restaurante;
     private String categoria;
+
 }

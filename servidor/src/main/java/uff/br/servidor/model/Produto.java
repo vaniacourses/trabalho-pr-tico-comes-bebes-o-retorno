@@ -24,6 +24,11 @@ public class Produto {
     private String descricao;
     @Column(name = "preco")
     private double preco;
+    @Column(name = "estoque")
+    private int estoque;
+    @ManyToOne
+    @JoinColumn(name = "restaurante_id", nullable = false)
+    private Restaurante restaurante;
     @ManyToOne
     @JoinColumn(name="categoria_id",nullable = false)
     private Categoria categoria;

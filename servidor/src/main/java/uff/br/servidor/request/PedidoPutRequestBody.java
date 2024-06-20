@@ -11,12 +11,8 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProdutoPutRequestBody {
+public class PedidoPutRequestBody {
     private UUID id;
-    private String nome;
-    private String descricao;
-    private double preco;
-    private int estoque;
-    private String restaurante;
-    private String categoria;
+    private String usuario;
+    private String status;
 }

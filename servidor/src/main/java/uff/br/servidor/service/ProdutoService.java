@@ -9,6 +9,7 @@ import uff.br.servidor.mapper.ProdutoMapper;
 import uff.br.servidor.model.Produto;
 import uff.br.servidor.repository.CategoriaRepository;
 import uff.br.servidor.repository.ProdutoRepository;
+import uff.br.servidor.repository.RestauranteRepository;
 import uff.br.servidor.request.ProdutoPostRequestBody;
 import uff.br.servidor.request.ProdutoPutRequestBody;
 
@@ -21,6 +22,7 @@ public class ProdutoService {
     private final ProdutoMapper produtoMapper;
 
     private final CategoriaRepository categoriaRepository;
+    private final RestauranteRepository restauranteRepository;
 
     public Page<Produto> findAll(Pageable pageable){
         return produtoRepository.findAll(pageable);
@@ -43,6 +45,9 @@ public class ProdutoService {
         produtoSalvo.setNome(produtoPutRequestBody.getNome());
         produtoSalvo.setDescricao(produtoPutRequestBody.getDescricao());
         produtoSalvo.setPreco(produtoPutRequestBody.getPreco());
+        produtoSalvo.setEstoque(produtoPutRequestBody.getEstoque());
+        produtoSalvo.setRestaurante(restauranteRepository.findByNome(produtoPutRequestBody.getNome())
+                .orElseThrow(()-> new BadRequestException("Nome do restaurante nao encontrado")));
         produtoSalvo.setCategoria(categoriaRepository.findByNome(produtoPutRequestBody.getCategoria())
                 .orElseThrow(()-> new BadRequestException("Nome de categoria nao encontrada")));
 
