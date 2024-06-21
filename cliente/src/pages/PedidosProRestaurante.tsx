@@ -47,7 +47,7 @@ export function PedidosProRestaurante() {
             <h1 className="text-3xl font-bold p-10" >PEDIDOS DOS USUARIOS</h1>
             <Card className="border-2  rounded-lg shadow-lg p-4">
                 <CardHeader className="p-4 border-b">
-                    <CardTitle className="text-2xl text-center">Pedido nº 67890</CardTitle>
+                    <CardTitle className="text-2xl self-start text-center">Pedido nº 67890</CardTitle>
                     <CardDescription className="text-2xl">Cliente: <b>Maria</b></CardDescription>
                 </CardHeader>
                 <CardContent className="p-4">
