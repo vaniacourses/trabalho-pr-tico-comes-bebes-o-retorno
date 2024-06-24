@@ -1,11 +1,11 @@
-import { Button } from './components/ui/button'
-import { HomePage } from './pages/HomePage'
+import { Header } from './components/Header'
+import { AppRoutes } from './routes/routes'
 
 function App() {
 
   return (
     <>
-      <HomePage/>
+      <AppRoutes/>
     </>
   )
 }
