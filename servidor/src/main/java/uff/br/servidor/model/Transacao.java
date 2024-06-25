@@ -2,6 +2,7 @@ package uff.br.servidor.model;
 
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -14,11 +15,16 @@ import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Data
 @Entity(name = "transacao")
+@DynamicUpdate
+@DynamicInsert
 public class Transacao {
     
     @Id
@@ -35,6 +41,9 @@ public class Transacao {
     private String cpf;
 
     @OneToOne
-    @JoinColumn(name = "id_pedido", nullable = false)
+    @JoinColumn(name = "pedido_id", insertable = false, updatable = false)
     private Pedido pedido;
+
+    @Column(name="pedido_id")
+    private UUID pedidoId;
 }
