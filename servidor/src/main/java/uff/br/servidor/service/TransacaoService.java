@@ -21,14 +21,14 @@ public class TransacaoService {
     private PedidoRepository pedidoRepository;
 
     public Transacao criar(Transacao transacao) {
-        transacaoRepository.save(transacao);
-        // pedidoRepository.findById(transacao.getPedidoId()).ifPresentOrElse(
-        //     pedido -> {
-        //     },
-        //     () -> {
-        //         throw new EntityNotFoundException("Pedido com ID " + transacao.getPedidoId() + " não encontrado");
-        //     }
-        // );
+        pedidoRepository.findById(transacao.getPedidoId()).ifPresentOrElse(
+            pedido -> {
+                transacaoRepository.save(transacao);
+            },
+            () -> {
+                throw new EntityNotFoundException("Pedido com ID " + transacao.getPedidoId() + " não encontrado");
+            }
+        );
         return transacao;
     }
 
