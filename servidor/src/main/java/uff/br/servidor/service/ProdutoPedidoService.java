@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import uff.br.servidor.exceptions.BadRequestException;
 import uff.br.servidor.mapper.ProdutoPedidoMapper;
-import uff.br.servidor.model.Pedido;
 import uff.br.servidor.model.ProdutoPedido;
 import uff.br.servidor.repository.PedidoRepository;
 import uff.br.servidor.repository.ProdutoPedidoRepository;

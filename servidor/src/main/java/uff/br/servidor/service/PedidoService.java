@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import uff.br.servidor.exceptions.BadRequestException;
 import uff.br.servidor.mapper.PedidoMapper;
 import uff.br.servidor.model.Pedido;
-import uff.br.servidor.model.Produto;
 import uff.br.servidor.model.Status;
 import uff.br.servidor.repository.PedidoRepository;
 import uff.br.servidor.repository.UsuarioRepository;
