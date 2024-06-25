@@ -39,7 +39,10 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.23</version> <!-- Certifique-se de que a versão é a desejada -->
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
