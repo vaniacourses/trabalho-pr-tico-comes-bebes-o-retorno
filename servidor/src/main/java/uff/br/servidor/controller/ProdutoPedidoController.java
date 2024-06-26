@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import uff.br.servidor.model.ProdutoPedido;
 import uff.br.servidor.request.ProdutoPedidoPostRequestBody;
 import uff.br.servidor.request.ProdutoPedidoPutRequestBody;
-import uff.br.servidor.request.ProdutoPostRequestBody;
 import uff.br.servidor.service.ProdutoPedidoService;
 
 import java.util.UUID;
