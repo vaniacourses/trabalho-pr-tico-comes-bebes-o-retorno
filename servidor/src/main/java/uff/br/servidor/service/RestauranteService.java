@@ -1,8 +1,11 @@
 package uff.br.servidor.service;
 
+//import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//import uff.br.servidor.exceptions.BadRequestException;
+import uff.br.servidor.model.Produto;
 import uff.br.servidor.model.Restaurante;
 import uff.br.servidor.model.Usuario;
 import uff.br.servidor.repository.RestauranteRepository;

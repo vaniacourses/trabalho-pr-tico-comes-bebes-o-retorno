@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uff.br.servidor.model.Restaurante;
 import uff.br.servidor.service.RestauranteService;
+//import uff.br.servidor.exceptions.BadRequestException;
 
 import java.util.List;
 import java.util.UUID;
