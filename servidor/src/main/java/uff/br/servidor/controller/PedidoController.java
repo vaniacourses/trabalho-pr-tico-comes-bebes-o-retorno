@@ -24,8 +24,8 @@ public class PedidoController {
         return new ResponseEntity<>(pedidoService.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/cpf")
-    public ResponseEntity<Page<Pedido>> findByCpf(Pageable pageable, @RequestParam String cpf){
+    @GetMapping("/{cpf}")
+    public ResponseEntity<Page<Pedido>> findByCpf(Pageable pageable, @PathVariable String cpf){
         return new ResponseEntity<>(pedidoService.findByCpfUsuario(pageable, cpf), HttpStatus.OK);
     }
 

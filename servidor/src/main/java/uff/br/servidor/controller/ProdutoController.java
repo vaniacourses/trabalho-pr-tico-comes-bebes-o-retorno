@@ -24,8 +24,8 @@ public class ProdutoController {
         return new ResponseEntity<>(produtoService.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<Page<Produto>> findById(Pageable pageable, UUID id){
+    @GetMapping("/{id}")
+    public ResponseEntity<Page<Produto>> findById(Pageable pageable, @PathVariable UUID id){
         return new ResponseEntity<>(produtoService.findById(pageable, id), HttpStatus.OK);
     }
 
