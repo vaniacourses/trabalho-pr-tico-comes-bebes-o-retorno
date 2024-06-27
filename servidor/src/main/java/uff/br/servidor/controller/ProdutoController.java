@@ -24,9 +24,9 @@ public class ProdutoController {
         return new ResponseEntity<>(produtoService.findAll(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/nome")
-    public ResponseEntity<Page<Produto>> findByNome(Pageable pageable, String nome){
-        return new ResponseEntity<>(produtoService.findByNome(pageable, nome), HttpStatus.OK);
+    @GetMapping("/id")
+    public ResponseEntity<Page<Produto>> findById(Pageable pageable, UUID id){
+        return new ResponseEntity<>(produtoService.findById(pageable, id), HttpStatus.OK);
     }
 
     @GetMapping("/categoria")

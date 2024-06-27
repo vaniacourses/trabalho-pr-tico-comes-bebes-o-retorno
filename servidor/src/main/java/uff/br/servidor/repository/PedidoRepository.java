@@ -8,5 +8,5 @@ import uff.br.servidor.model.Pedido;
 import java.util.UUID;
 
 public interface PedidoRepository extends JpaRepository<Pedido, UUID> {
-    Page<Pedido> findByUsuario_Nome(Pageable pageable, String nome);
+    Page<Pedido> findByUsuario_Cpf(Pageable pageable, String cpf);
 }

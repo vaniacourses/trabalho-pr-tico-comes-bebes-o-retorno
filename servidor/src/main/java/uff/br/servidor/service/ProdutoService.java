@@ -28,8 +28,8 @@ public class ProdutoService {
         return produtoRepository.findAll(pageable);
     }
 
-    public Page<Produto> findByNome(Pageable pageable, String nome){
-        return produtoRepository.findByNome(pageable, nome);
+    public Page<Produto> findById(Pageable pageable, UUID id){
+        return produtoRepository.findById(pageable, id);
     }
 
     public Page<Produto> findByCategoria(Pageable pageable, String categoria){

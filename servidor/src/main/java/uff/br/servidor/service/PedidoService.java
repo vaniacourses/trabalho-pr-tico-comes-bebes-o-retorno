@@ -27,8 +27,8 @@ public class PedidoService {
         return pedidoRepository.findAll(pageable);
     }
 
-    public Page<Pedido> findByNomeUsuario(Pageable pageable, String nomeUsuario){
-        return pedidoRepository.findByUsuario_Nome(pageable, nomeUsuario);
+    public Page<Pedido> findByCpfUsuario(Pageable pageable, String cpf){
+        return pedidoRepository.findByUsuario_Cpf(pageable, cpf);
     }
 
     public Pedido salvar(PedidoPostRequestBody pedidoPostRequestBody){
