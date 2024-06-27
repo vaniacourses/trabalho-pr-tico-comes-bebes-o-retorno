@@ -15,7 +15,6 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +33,7 @@ public class SolicitacaoCadastroController {
     @PostMapping
     public ResponseEntity<Object> criar(@Valid @RequestBody SolicitacaoCadastro entity) {
        try {
-        var result = solicitacaoService.criar(entity);
+        var result = this.solicitacaoService.criar(entity);
         return ResponseEntity.status(201).body(result);
        } catch (Exception e) {
         return ResponseEntity.status(500).body(e.getMessage());
@@ -45,7 +44,7 @@ public class SolicitacaoCadastroController {
     @GetMapping
     public ResponseEntity<Object> getALL() {
         try {
-            List<SolicitacaoCadastro> result = solicitacaoService.getAll();
+            List<SolicitacaoCadastro> result = this.solicitacaoService.getAll();
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
@@ -53,22 +52,12 @@ public class SolicitacaoCadastroController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable UUID id, @RequestBody SolicitacaoCadastro entity) {
+    public ResponseEntity<Object> update(@PathVariable UUID id,@RequestBody SolicitacaoCadastro entity) {
         try {
-            SolicitacaoCadastro result = solicitacaoService.update(id, entity);
+            SolicitacaoCadastro result = this.solicitacaoService.update(id,entity);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable UUID id) {
-        try {
-            solicitacaoService.delete(id);
-            return ResponseEntity.ok().body(null);
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body(e.getMessage());
         }
     }
 

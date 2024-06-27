@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
 import uff.br.servidor.model.Carteira;
-import uff.br.servidor.model.SolicitacaoCadastro;
 import uff.br.servidor.repository.CarteiraRepository;
 import uff.br.servidor.repository.UsuarioRepository;
 
@@ -23,7 +22,7 @@ public class CarteiraService {
 
 
     public Carteira criar(Carteira carteira) {
-        usuarioRepository.findById(carteira.getUsuarioId()).ifPresentOrElse(
+        this.usuarioRepository.findById(carteira.getUsuarioId()).ifPresentOrElse(
             pedido -> {
                 carteiraRepository.save(carteira);
             },
@@ -36,11 +35,11 @@ public class CarteiraService {
 
 
     public Carteira getById(UUID id) {
-        return carteiraRepository.findById(id).orElse(null);
+        return this.carteiraRepository.findById(id).orElse(null);
     }
 
     public void delete(UUID id) {
-        carteiraRepository.findById(id).ifPresentOrElse(
+        this.carteiraRepository.findById(id).ifPresentOrElse(
             solicitacao -> {
                 carteiraRepository.delete(solicitacao);
             },
@@ -51,13 +50,13 @@ public class CarteiraService {
     }
 
     public Carteira update(UUID id, Carteira carteira) {
-        Carteira entity = carteiraRepository.findById(id).orElse(null);
+        Carteira entity = this.carteiraRepository.findById(id).orElse(null);
         if (entity == null) {
             throw new EntityNotFoundException("Solicitação com ID " + id + " não encontrada");
         }
         entity.setSaldo(carteira.getSaldo());
         entity.setUsuarioId(carteira.getUsuarioId());
-        return carteiraRepository.save(carteira);
+        return this.carteiraRepository.save(carteira);
     }
 
 }

@@ -33,38 +33,8 @@ public class TransacaoController {
     @PostMapping
     public ResponseEntity<Object> create(@Valid @RequestBody Transacao transacao) {
         try {
-            var result = transacaoService.criar(transacao);
+            var result = this.transacaoService.criar(transacao);
             return ResponseEntity.status(201).body(result);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(e.getMessage());
-        }
-    }
-
-    @GetMapping
-    public ResponseEntity<Object> getAll() {
-        try {
-            List<Transacao> result = transacaoService.getAll();
-            return ResponseEntity.ok().body(result);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(e.getMessage());
-        }
-    }
-    
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable UUID id) {
-        try {
-            transacaoService.delete(id);
-            return ResponseEntity.ok().body(null);
-        } catch (Exception e) {
-            return ResponseEntity.status(400).body(e.getMessage());
-        }
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable UUID id, @Valid @RequestBody Transacao transacao) {
-        try {
-            Transacao result = transacaoService.update(id, transacao);
-            return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
         }

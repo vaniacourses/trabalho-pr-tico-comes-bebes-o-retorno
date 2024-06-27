@@ -27,7 +27,7 @@ public class CarteiraController {
     @PostMapping
     public ResponseEntity<Object> criar(@Valid @RequestBody Carteira entity) {
        try {
-        var result = carteiraService.criar(entity);
+        var result = this.carteiraService.criar(entity);
         return ResponseEntity.status(201).body(result);
        } catch (Exception e) {
         return ResponseEntity.status(500).body(e.getMessage());
@@ -38,7 +38,7 @@ public class CarteiraController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable UUID id) {
         try {
-            Carteira result = carteiraService.getById(id);
+            Carteira result = this.carteiraService.getById(id);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
@@ -48,7 +48,7 @@ public class CarteiraController {
     @PutMapping("/{id}")
     public ResponseEntity<Object> update(@PathVariable UUID id, @RequestBody Carteira entity) {
         try {
-            Carteira result = carteiraService.update(id, entity);
+            Carteira result = this.carteiraService.update(id, entity);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
@@ -58,7 +58,7 @@ public class CarteiraController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@PathVariable UUID id) {
         try {
-            carteiraService.delete(id);
+            this.carteiraService.delete(id);
             return ResponseEntity.ok().body(null);
         } catch (Exception e) {
             return ResponseEntity.status(400).body(e.getMessage());

@@ -21,9 +21,9 @@ public class TransacaoService {
     private PedidoRepository pedidoRepository;
 
     public Transacao criar(Transacao transacao) {
-        pedidoRepository.findById(transacao.getPedidoId()).ifPresentOrElse(
+        this.pedidoRepository.findById(transacao.getPedidoId()).ifPresentOrElse(
             pedido -> {
-                transacaoRepository.save(transacao);
+                this.transacaoRepository.save(transacao);
             },
             () -> {
                 throw new EntityNotFoundException("Pedido com ID " + transacao.getPedidoId() + " não encontrado");
@@ -31,31 +31,5 @@ public class TransacaoService {
         );
         return transacao;
     }
-
-    public List<Transacao> getAll() {
-        return transacaoRepository.findAll();
-    }
-
-    public void delete(UUID id) {
-        transacaoRepository.findById(id).ifPresentOrElse(
-            transacao -> {
-                transacaoRepository.delete(transacao);
-            },
-            () -> {
-                throw new EntityNotFoundException("Transação com ID " + id + " não encontrada");
-            }
-        );
-    }
-
-    public Transacao update(UUID id, Transacao transacao) {
-        Transacao entity = transacaoRepository.findById(id).orElse(null);
-        if (entity == null) {
-            throw new EntityNotFoundException("Transação com ID " + id + " não encontrada");
-        }
-        entity.setCpf(transacao.getCpf());
-        entity.setTipo(transacao.getTipo());
-        entity.setPedidoId(transacao.getPedidoId());
-        return transacaoRepository.save(transacao);
-    }
-
+    
 }

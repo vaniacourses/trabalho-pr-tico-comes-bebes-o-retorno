@@ -28,7 +28,7 @@ public class SolicitacaoCadastro {
     private UUID id;
 
     @Enumerated(EnumType.ORDINAL)
-    private Status status;
+    private StatusCadastro status;
 
     @NotBlank
     private String veiculo;

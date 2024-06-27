@@ -14,17 +14,14 @@ import lombok.Data;
 @Data
 @Entity(name = "carteira")
 public class Carteira {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-
-    private double saldo;
 
     @OneToOne
     @JoinColumn(name = "usuario_id", insertable = false, updatable = false)
     private Usuario usuario;
-
+    
+    @Id
     @Column(name="usuario_id")
     private UUID usuarioId;
+
+    private double saldo;
 }

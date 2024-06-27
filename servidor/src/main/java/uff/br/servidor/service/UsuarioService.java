@@ -3,6 +3,7 @@ package uff.br.servidor.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uff.br.servidor.model.Usuario;
+import uff.br.servidor.model.UsuarioStatus;
 import uff.br.servidor.repository.UsuarioRepository;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class UsuarioService {
     }
 
     public Usuario salvarUsuario(Usuario usuario) {
+        usuario.setStatus(UsuarioStatus.ATIVO);
         return usuarioRepository.save(usuario);
 
     }
@@ -36,6 +38,7 @@ public class UsuarioService {
     public Usuario atualizarUsuario(UUID id, Usuario usuarioAtualizado) {
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         if (usuario != null) {
+            usuario.setStatus(usuarioAtualizado.getStatus());
             usuario.setNome(usuarioAtualizado.getNome());
             usuario.setCpf(usuarioAtualizado.getCpf());
             usuario.setEmail(usuarioAtualizado.getEmail());

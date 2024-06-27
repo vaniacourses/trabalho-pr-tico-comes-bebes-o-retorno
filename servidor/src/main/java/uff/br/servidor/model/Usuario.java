@@ -29,6 +29,8 @@ public class Usuario {
     private String senha_hash;
     @Column(name = "cpf")
     private String cpf;
+    @Column(name = "status")
+    private UsuarioStatus status;
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;

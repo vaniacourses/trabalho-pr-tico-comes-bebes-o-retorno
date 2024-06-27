@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
 import uff.br.servidor.model.SolicitacaoCadastro;
+import uff.br.servidor.model.StatusCadastro;
 import uff.br.servidor.repository.SolicitacaoCadastroRepository;
 import uff.br.servidor.repository.UsuarioRepository;
 
@@ -21,9 +22,10 @@ public class SolicitacaoCadastroService {
     private UsuarioRepository usuarioRepository;
 
     public SolicitacaoCadastro criar(SolicitacaoCadastro solicitacao) {
-            usuarioRepository.findById(solicitacao.getUsuarioId()).ifPresentOrElse(
+        this.usuarioRepository.findById(solicitacao.getUsuarioId()).ifPresentOrElse(
             pedido -> {
-                solicitacaoRepository.save(solicitacao);
+                solicitacao.setStatus(StatusCadastro.PENDENTE);
+                this.solicitacaoRepository.save(solicitacao);
             },
             () -> {
                 throw new EntityNotFoundException("Pedido com ID " + solicitacao.getUsuarioId() + " não encontrado");
@@ -33,18 +35,7 @@ public class SolicitacaoCadastroService {
     }
 
     public List<SolicitacaoCadastro> getAll() {
-        return solicitacaoRepository.findAll();
-    }
-
-    public void delete(UUID id) {
-        solicitacaoRepository.findById(id).ifPresentOrElse(
-            solicitacao -> {
-                solicitacaoRepository.delete(solicitacao);
-            },
-            () -> {
-                throw new EntityNotFoundException("Solicitação com ID " + id + " não encontrada");
-            }
-        );
+        return this.solicitacaoRepository.findAll();
     }
 
     public SolicitacaoCadastro update(UUID id, SolicitacaoCadastro solicitacao) {
