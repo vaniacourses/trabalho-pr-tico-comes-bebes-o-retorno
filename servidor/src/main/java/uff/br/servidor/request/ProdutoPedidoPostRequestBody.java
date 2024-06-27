@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProdutoPedidoPostRequestBody {
-    private String produto;
+    private UUID produto_id;
     private UUID pedido_id;
     private int quantidade;
 }

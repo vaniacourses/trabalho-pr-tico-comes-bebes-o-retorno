@@ -13,6 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class PedidoPutRequestBody {
     private UUID id;
-    private String usuario;
+    private UUID usuario;
     private String status;
 }

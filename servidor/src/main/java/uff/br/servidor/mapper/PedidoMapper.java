@@ -16,7 +16,7 @@ public class PedidoMapper {
     public Pedido toPedido(PedidoPostRequestBody pedidoPostRequestBody){
         System.out.println(pedidoPostRequestBody.getUsuario());
         return Pedido.builder()
-                .usuario(usuarioRepository.findByNome(pedidoPostRequestBody.getUsuario())
+                .usuario(usuarioRepository.findById(pedidoPostRequestBody.getUsuario())
                         .orElseThrow(()-> new BadRequestException("Nome do usuario nao encontrado")))
                 .status(Status.valueOf(pedidoPostRequestBody.getStatus()))
                 .build();

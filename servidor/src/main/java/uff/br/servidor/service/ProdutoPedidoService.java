@@ -35,7 +35,7 @@ public class ProdutoPedidoService {
     public void atualizar(ProdutoPedidoPutRequestBody produtoPedidoPutRequestBody){
         ProdutoPedido produtoPedidoSalvo = findByIdOrElse(produtoPedidoPutRequestBody.getId());
 
-        produtoPedidoSalvo.setProduto(produtoRepository.findByNome(produtoPedidoPutRequestBody.getProduto())
+        produtoPedidoSalvo.setProduto(produtoRepository.findById(produtoPedidoPutRequestBody.getProduto_id())
                 .orElseThrow(()-> new BadRequestException("Nome do produto nao encontrado")));
         produtoPedidoSalvo.setQuantidade(produtoPedidoSalvo.getQuantidade());
         produtoPedidoSalvo.setPedido(pedidoRepository.findById(produtoPedidoPutRequestBody.getPedido_id())

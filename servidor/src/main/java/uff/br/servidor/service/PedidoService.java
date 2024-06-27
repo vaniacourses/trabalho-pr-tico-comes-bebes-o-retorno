@@ -38,7 +38,7 @@ public class PedidoService {
     public void atualizar(PedidoPutRequestBody pedidoPutRequestBody){
         Pedido pedidoSalvo = findByIdOrElse(pedidoPutRequestBody.getId());
 
-        pedidoSalvo.setUsuario(usuarioRepository.findByNome(pedidoPutRequestBody.getUsuario())
+        pedidoSalvo.setUsuario(usuarioRepository.findById(pedidoPutRequestBody.getUsuario())
                 .orElseThrow(()-> new BadRequestException("Nome do usuario nao encontrado")));
         pedidoSalvo.setStatus(Status.valueOf(pedidoPutRequestBody.getStatus()));
 

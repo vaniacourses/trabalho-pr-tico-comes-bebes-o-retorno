@@ -17,6 +17,6 @@ public class ProdutoPutRequestBody {
     private String descricao;
     private double preco;
     private int estoque;
-    private String restaurante;
+    private UUID restaurante_id;
     private String categoria;
 }

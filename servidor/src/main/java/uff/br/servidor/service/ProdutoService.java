@@ -46,7 +46,7 @@ public class ProdutoService {
         produtoSalvo.setDescricao(produtoPutRequestBody.getDescricao());
         produtoSalvo.setPreco(produtoPutRequestBody.getPreco());
         produtoSalvo.setEstoque(produtoPutRequestBody.getEstoque());
-        produtoSalvo.setRestaurante(restauranteRepository.findByNome(produtoPutRequestBody.getNome())
+        produtoSalvo.setRestaurante(restauranteRepository.findById(produtoPutRequestBody.getRestaurante_id())
                 .orElseThrow(()-> new BadRequestException("Nome do restaurante nao encontrado")));
         produtoSalvo.setCategoria(categoriaRepository.findByNome(produtoPutRequestBody.getCategoria())
                 .orElseThrow(()-> new BadRequestException("Nome de categoria nao encontrada")));
