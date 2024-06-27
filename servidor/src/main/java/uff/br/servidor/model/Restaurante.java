@@ -8,12 +8,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
-@Table(name="restaurante")
+@Table(name = "restaurante")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
+@DynamicUpdate
 public class Restaurante {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,4 +28,5 @@ public class Restaurante {
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
+
 }
