@@ -1,7 +1,11 @@
 package uff.br.servidor.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import uff.br.servidor.model.Usuario;
 import uff.br.servidor.model.UsuarioStatus;
 import uff.br.servidor.repository.UsuarioRepository;
@@ -10,14 +14,12 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
-    @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
+    private PasswordEncoder passwordEncoder;
 
     public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
@@ -31,6 +33,8 @@ public class UsuarioService {
 
     public Usuario salvarUsuario(Usuario usuario) {
         usuario.setStatus(UsuarioStatus.ATIVO);
+        var password_hash = passwordEncoder.encode(usuario.getSenha_hash());
+        usuario.setSenha_hash(password_hash);
         return usuarioRepository.save(usuario);
 
     }
