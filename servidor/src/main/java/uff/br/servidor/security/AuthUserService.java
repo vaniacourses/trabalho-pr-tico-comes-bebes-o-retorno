@@ -1,5 +1,8 @@
 package uff.br.servidor.security;
 
+import java.time.Duration;
+import java.time.Instant;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,7 +33,7 @@ public class AuthUserService {
             var password = this.passwordEncoder.matches(authUserDTO.getSenha_hash(), usuario.getSenha_hash());
             if(password){
                 Algorithm algorithm = Algorithm.HMAC256(secret_key);
-                var token = JWT.create().withIssuer("secret").withSubject(usuario.getId().toString()).sign(algorithm);
+                var token = JWT.create().withIssuer("secret").withExpiresAt(Instant.now().plus(Duration.ofHours(2))).withSubject(usuario.getId().toString()).sign(algorithm);
 
                 return token;   
             }else{
