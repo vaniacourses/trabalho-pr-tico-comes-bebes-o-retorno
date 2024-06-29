@@ -13,6 +13,7 @@ import uff.br.servidor.repository.ProdutoRepository;
 import uff.br.servidor.request.ProdutoPedidoPostRequestBody;
 import uff.br.servidor.request.ProdutoPedidoPutRequestBody;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -28,6 +29,9 @@ public class ProdutoPedidoService {
         return produtoPedidoRepository.findAll(pageable);
     }
 
+    public List<ProdutoPedido> findProdutoPedidoByPedido_Id(UUID id){
+        return produtoPedidoRepository.findProdutoPedidoByPedido_Id(id);
+    }
     public ProdutoPedido salvar(ProdutoPedidoPostRequestBody produtoPedidoPostRequestBody){
         return produtoPedidoRepository.save(produtoPedidoMapper.toProdutoPedido(produtoPedidoPostRequestBody));
     }

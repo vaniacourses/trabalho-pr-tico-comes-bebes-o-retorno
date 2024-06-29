@@ -11,11 +11,13 @@ import uff.br.servidor.request.PedidoPostRequestBody;
 import uff.br.servidor.request.PedidoPutRequestBody;
 import uff.br.servidor.service.PedidoService;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("pedido")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class PedidoController {
     private final PedidoService pedidoService;
 
@@ -25,8 +27,13 @@ public class PedidoController {
     }
 
     @GetMapping("/{cpf}")
-    public ResponseEntity<Page<Pedido>> findByCpf(Pageable pageable, @PathVariable String cpf){
-        return new ResponseEntity<>(pedidoService.findByCpfUsuario(pageable, cpf), HttpStatus.OK);
+    public ResponseEntity<List<Pedido>> findByCpfUsuario(@PathVariable String cpf){
+        return new ResponseEntity<>(pedidoService.findByCpfUsuario(cpf), HttpStatus.OK);
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Pedido> findById(@PathVariable UUID id){
+        return new ResponseEntity<>(pedidoService.findByIdOrElse(id), HttpStatus.OK);
     }
 
     @PostMapping

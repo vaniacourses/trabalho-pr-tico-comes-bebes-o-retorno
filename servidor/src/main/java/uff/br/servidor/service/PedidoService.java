@@ -13,6 +13,7 @@ import uff.br.servidor.repository.UsuarioRepository;
 import uff.br.servidor.request.PedidoPostRequestBody;
 import uff.br.servidor.request.PedidoPutRequestBody;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -27,8 +28,8 @@ public class PedidoService {
         return pedidoRepository.findAll(pageable);
     }
 
-    public Page<Pedido> findByCpfUsuario(Pageable pageable, String cpf){
-        return pedidoRepository.findByUsuario_Cpf(pageable, cpf);
+    public List<Pedido> findByCpfUsuario(String cpf){
+        return pedidoRepository.findPedidosByUsuarioCpf(cpf);
     }
 
     public Pedido salvar(PedidoPostRequestBody pedidoPostRequestBody){

@@ -1,5 +1,4 @@
 import { GerenciarRestaurante } from "@/pages/GerenciarRestaurante";
-import { HistoricoPedido } from "@/pages/HistoricoPedido";
 import { HomePage } from "@/pages/HomePage";
 import { Pedido } from "@/pages/Pedido";
 import { LayoutTemplate } from "@/template/Layout";
@@ -16,8 +15,7 @@ export function AppRoutes(){
                 <Route path="/" element={<LayoutTemplate/>}>
                     <Route path="/home" element={<HomePage/>}/>
                     <Route path="/gerenciar-restaurante" element={<GerenciarRestaurante/>}/>
-                    <Route path="/historico-pedido" element={<HistoricoPedido/>}/>
-                    <Route path="/pedido/:pedidoId" element={<Pedido/>}/>
+                    <Route path="/pedido" element={<Pedido/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

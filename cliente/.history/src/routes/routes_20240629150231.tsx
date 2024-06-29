@@ -16,8 +16,8 @@ export function AppRoutes(){
                 <Route path="/" element={<LayoutTemplate/>}>
                     <Route path="/home" element={<HomePage/>}/>
                     <Route path="/gerenciar-restaurante" element={<GerenciarRestaurante/>}/>
-                    <Route path="/historico-pedido" element={<HistoricoPedido/>}/>
                     <Route path="/pedido/:pedidoId" element={<Pedido/>}/>
+                    <Route path="/historico-pedido" element={<HistoricoPedido/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -27,6 +27,7 @@ public class AuthUserService {
 
     public String login(AuthUserDTO authUserDTO) {
         var usuario = this.usuarioRepository.findByCpf(authUserDTO.getCpf()).orElse(null);
+        System.out.println(usuario);
         if(usuario == null){
             throw new RuntimeException("Cpf nao encontrado");
         }else{
@@ -34,7 +35,6 @@ public class AuthUserService {
             if(password){
                 Algorithm algorithm = Algorithm.HMAC256(secret_key);
                 var token = JWT.create().withIssuer("secret").withExpiresAt(Instant.now().plus(Duration.ofHours(2))).withSubject(usuario.getId().toString()).sign(algorithm);
-
                 return token;   
             }else{
                 throw new RuntimeException("Senha invalida");
