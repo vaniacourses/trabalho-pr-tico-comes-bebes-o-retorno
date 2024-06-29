@@ -9,6 +9,10 @@ export interface Usuario {
     data_nascimento:String;
 }
 
+export interface UsuarioLogin{
+    cpf:string;
+    senha_hash:string;
+}
 
 export enum Role {
     USER = "USER",

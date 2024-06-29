@@ -72,7 +72,7 @@ export function CadastroPage(){
                         errorMessage={errors.data_nascimento?.message}
                         {...register("data_nascimento")}
                     />
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">Cadastrar</Button>
                 </form>
                 
 

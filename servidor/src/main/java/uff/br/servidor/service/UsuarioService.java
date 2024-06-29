@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import uff.br.servidor.model.Role;
 import uff.br.servidor.model.Usuario;
 import uff.br.servidor.model.UsuarioStatus;
 import uff.br.servidor.repository.UsuarioRepository;
@@ -38,6 +39,7 @@ public class UsuarioService {
             }
         );
         usuario.setStatus(UsuarioStatus.ATIVO);
+        usuario.setRole(Role.USER);
         var password_hash = passwordEncoder.encode(usuario.getSenha_hash());
         usuario.setSenha_hash(password_hash);
         return usuarioRepository.save(usuario);
