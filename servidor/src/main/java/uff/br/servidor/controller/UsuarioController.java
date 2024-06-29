@@ -36,9 +36,13 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> salvarUsuario(@RequestBody Usuario usuario) {
-        Usuario usuarioSalvo = usuarioService.salvarUsuario(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+    public ResponseEntity<Object> salvarUsuario(@RequestBody Usuario usuario) {
+        try {
+            Usuario usuarioSalvo = usuarioService.salvarUsuario(usuario);
+            return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
 
     }
 

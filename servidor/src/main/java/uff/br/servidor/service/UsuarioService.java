@@ -32,6 +32,11 @@ public class UsuarioService {
     }
 
     public Usuario salvarUsuario(Usuario usuario) {
+        usuarioRepository.findByCpf(usuario.getCpf()).ifPresent(
+            (user)->{
+                throw new IllegalArgumentException("CPF ja existe");
+            }
+        );
         usuario.setStatus(UsuarioStatus.ATIVO);
         var password_hash = passwordEncoder.encode(usuario.getSenha_hash());
         usuario.setSenha_hash(password_hash);
