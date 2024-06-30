@@ -21,7 +21,7 @@ export function Header(){
               <Link to ={"/cadastro"}><Button>Criar conta</Button></Link>
               <Link to ={"/login"}><Button>Entrar</Button></Link>
             </>):(
-              <Button onClick={handleLogout} ><Link to="/home">Logout</Link></Button>
+              <Button onClick={handleLogout} ><Link to="/">Logout</Link></Button>
               
             )
           }</div>
