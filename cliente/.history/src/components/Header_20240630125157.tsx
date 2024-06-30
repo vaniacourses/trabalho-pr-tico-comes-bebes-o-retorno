@@ -8,7 +8,7 @@ export function Header(){
     const { isAuthenticated} = useContext(AuthContext)
     const handleLogout = () =>{
         localStorage.removeItem("acess-token")
-        sessionStorage.clear();
+        window.location.reload()
     }
     return(
         <header className="flex items-center bg-black justify-between px-24 py-8">

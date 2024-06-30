@@ -19,9 +19,10 @@ const Title = styled.h1`
 export function HomePage() {
   return (
     <>
+      <Header />
       <Container>
         <Title>
-          <Link to='/historico-pedido'>Historico de pedidos</Link>
+          <Link to='/historico-pedidos'>Historico de pedidos</Link>
         </Title>
       </Container>
     </>
