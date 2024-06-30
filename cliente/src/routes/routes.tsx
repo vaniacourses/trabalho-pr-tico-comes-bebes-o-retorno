@@ -8,6 +8,8 @@ import { LayoutTemplate } from "@/template/Layout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
+import { RestauranteListPage } from "@/pages/Restaurante/RestauranteListPage";
+import { RestaurantePage } from "@/pages/Restaurante/RestaurantePage";
 
 
 
@@ -29,7 +31,8 @@ export function AppRoutes(){
                                 <Route path="/login" element={<LoginPage/>}/>
                             </Route>
                     }
-                    <Route path="/home" element={<HomePage/>}/>
+                    <Route path="/" element={<RestauranteListPage/>}/>
+                    <Route path="/restaurante/:restauranteId" element={<RestaurantePage/>}/>
                     <Route path="/gerenciar-restaurante" element={<GerenciarRestaurante/>}/>
                     <Route path="/historico-pedido" element={<HistoricoPedido/>}/>
                     <Route path="/pedido/:pedidoId" element={<Pedido/>}/>

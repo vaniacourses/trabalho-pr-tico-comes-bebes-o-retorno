@@ -5,7 +5,7 @@ import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { FormField } from "@/components/FormField"
 import { usePostRequest } from "@/hooks/usePostRequest"
-import { Usuario } from "@/models/Usuario"
+import { UsuarioRequest } from "@/models/Usuario"
 import { useNavigate } from "react-router-dom"
 
 
@@ -19,7 +19,7 @@ export function CadastroPage(){
         resolver: zodResolver(cadastroSchema)
     });
 
-    const {postRequest} = usePostRequest<Usuario>();
+    const {postRequest} = usePostRequest<UsuarioRequest>();
     const navigate = useNavigate()
 
     function onSubmit(values: CadastroSchemaType) {

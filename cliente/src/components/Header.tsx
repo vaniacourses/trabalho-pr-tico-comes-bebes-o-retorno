@@ -13,7 +13,7 @@ export function Header(){
     }
     return(
         <header className="flex items-center bg-black justify-between px-24 py-8">
-        <h1 className="font-bold text-xl text-white">Comes & Bebes</h1>
+       <Link to={"/"}><h1 className="font-bold text-xl text-white">Comes & Bebes</h1></Link> 
         <nav>
           <div className="flex flex-row gap-4">
           {!isAuthenticated ?
