@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uff.br.servidor.model.Status;
 
 import java.util.UUID;
 
@@ -13,5 +14,5 @@ import java.util.UUID;
 @NoArgsConstructor
 public class PedidoPostRequestBody {
     private UUID usuario;
-    private String status;
+    private Status status;
 }

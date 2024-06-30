@@ -14,6 +14,7 @@ import uff.br.servidor.service.PedidoService;
 import java.util.List;
 import java.util.UUID;
 
+
 @RestController
 @RequestMapping("pedido")
 @RequiredArgsConstructor
@@ -25,6 +26,17 @@ public class PedidoController {
     public ResponseEntity<Page<Pedido>> findAll(Pageable pageable){
         return new ResponseEntity<>(pedidoService.findAll(pageable), HttpStatus.OK);
     }
+
+    @GetMapping("/carrinho")
+    public ResponseEntity<Object> getCarrinho(@RequestHeader(name = "Authorization") String token) {
+        try {
+            var result  = pedidoService.getCarrinho(token);
+            return ResponseEntity.status(201).body(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+    
 
     @GetMapping("/{cpf}")
     public ResponseEntity<List<Pedido>> findByCpfUsuario(@PathVariable String cpf){

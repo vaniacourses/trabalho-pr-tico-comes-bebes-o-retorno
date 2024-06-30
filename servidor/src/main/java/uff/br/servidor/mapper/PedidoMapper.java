@@ -14,11 +14,11 @@ public class PedidoMapper {
     private final UsuarioRepository usuarioRepository;
 
     public Pedido toPedido(PedidoPostRequestBody pedidoPostRequestBody){
-        System.out.println(pedidoPostRequestBody.getUsuario());
+
         return Pedido.builder()
                 .usuario(usuarioRepository.findById(pedidoPostRequestBody.getUsuario())
                         .orElseThrow(()-> new BadRequestException("Nome do usuario nao encontrado")))
-                .status(Status.valueOf(pedidoPostRequestBody.getStatus()))
+                .status(pedidoPostRequestBody.getStatus())
                 .build();
     }
 }

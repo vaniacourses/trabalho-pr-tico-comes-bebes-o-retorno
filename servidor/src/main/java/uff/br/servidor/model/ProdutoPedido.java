@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="produto_pedido")
 @AllArgsConstructor
@@ -23,6 +25,7 @@ public class ProdutoPedido {
     @ManyToOne
     @JoinColumn(name = "produto_id", nullable = false)
     private Produto produto;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "pedido_id", nullable = false)
     private Pedido pedido;
