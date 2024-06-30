@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="produto")
 @AllArgsConstructor
@@ -26,9 +29,14 @@ public class Produto {
     private double preco;
     @Column(name = "estoque")
     private int estoque;
+    
+    @JsonIgnoreProperties(value ={ "produtos","nome","usuario","cnpj"},allowGetters = false)	
     @ManyToOne
     @JoinColumn(name = "restaurante_id", nullable = false)
     private Restaurante restaurante;
+
+    
+
     @ManyToOne
     @JoinColumn(name="categoria_id",nullable = false)
     private Categoria categoria;

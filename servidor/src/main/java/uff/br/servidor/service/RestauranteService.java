@@ -4,10 +4,12 @@ package uff.br.servidor.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
 //import uff.br.servidor.exceptions.BadRequestException;
 import uff.br.servidor.model.Produto;
 import uff.br.servidor.model.Restaurante;
 import uff.br.servidor.model.Usuario;
+import uff.br.servidor.repository.ProdutoRepository;
 import uff.br.servidor.repository.RestauranteRepository;
 import uff.br.servidor.repository.UsuarioRepository;
 
@@ -15,23 +17,24 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class RestauranteService {
 
     private final RestauranteRepository restauranteRepository;
     private final UsuarioRepository usuarioRepository;
-
-    @Autowired
-    public RestauranteService(RestauranteRepository restauranteRepository, UsuarioRepository usuarioRepository) {
-        this.restauranteRepository = restauranteRepository;
-        this.usuarioRepository = usuarioRepository;
-    }
+    private ProdutoRepository produtoRepository;
 
     public List<Restaurante> listarRestaurantes() {
         return restauranteRepository.findAll();
     }
 
     public Restaurante buscarRestaurantePorId(UUID id) {
-        return restauranteRepository.findById(id).orElse(null);
+        List<Produto> produtos = produtoRepository.findByRestauranteId(id);
+        Restaurante restaurante = restauranteRepository.findById(id).orElse(null);
+        if(restaurante != null) {
+            restaurante.setProdutos(produtos);
+        }
+        return restaurante;
     }
 
     public Restaurante salvarRestaurante(Restaurante restaurante) {
