@@ -19,8 +19,9 @@ import {
          <Dialog>
             <DialogTrigger>
                     <Button
-                                className="text-sky-700 border-2 border-sky-700 hover:bg-sky-700 hover:text-white"
-                            >
+                                
+                    className="text-sky-700 border-2 bg-blue-100  border-sky-700 hover:bg-sky-700 hover:text-white"
+                    >
                                 Editar
                             </Button>
                        
