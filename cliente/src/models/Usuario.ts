@@ -4,7 +4,7 @@ export interface UsuarioRequest {
     nome:String,
     email:String;
     telefone:String;
-    senha_hash:String;
+    senha:String;
     cpf:String;
     data_nascimento:String;
 }
@@ -14,7 +14,7 @@ export interface UsuarioResponse {
     nome:String,
     email:String;
     telefone:String;
-    senha_hash:String;
+    senha:String;
     role:Role;
     status:Status;
     cpf:String;

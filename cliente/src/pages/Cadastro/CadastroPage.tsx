@@ -23,7 +23,7 @@ export function CadastroPage(){
     const navigate = useNavigate()
 
     function onSubmit(values: CadastroSchemaType) {
-        postRequest("/usuario",values)
+        postRequest("/auth/registrar",values)
         navigate("/login")
     }     
     
@@ -55,8 +55,8 @@ export function CadastroPage(){
                         label="Senha"
                         placeholder="senha"
                         type="password"
-                        errorMessage={errors.senha_hash?.message}
-                        {...register("senha_hash")}
+                        errorMessage={errors.senha?.message}
+                        {...register("senha")}
                     />
                      <FormField
                         label="Telefone"
