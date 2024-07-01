@@ -24,6 +24,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
     @Column(name = "nome")
     private String nome;
 
@@ -40,14 +41,15 @@ public class Usuario {
     @Length(min = 11, max = 11, message = "O CPF deve ter 11 caracteres")
     @Pattern(regexp = "\\d{11}", message = "O CPF deve conter apenas números")
     @CPF(message = "CPF invalido")
-    @Column(name = "cpf")
+    @Column(name = "cpf", unique = true)
     private String cpf;
+
     @Column(name = "status")
     private UsuarioStatus status;
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
+
     @Column(name = "data_nascimento")
     private Date data_nascimento;
-
 }

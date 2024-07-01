@@ -1,4 +1,4 @@
-package uff.br.servidor.security;
+package uff.br.servidor.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthUserDTO {
-    
-    private String senha_hash;
+    private String senha;
     private String cpf;
-
 }

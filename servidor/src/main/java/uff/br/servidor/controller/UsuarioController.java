@@ -41,9 +41,8 @@ public class UsuarioController {
             Usuario usuarioSalvo = usuarioService.salvarUsuario(usuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(e.getMessage());
+            return ResponseEntity.status(422).body(e.getMessage());
         }
-
     }
 
     @PutMapping("/{id}")

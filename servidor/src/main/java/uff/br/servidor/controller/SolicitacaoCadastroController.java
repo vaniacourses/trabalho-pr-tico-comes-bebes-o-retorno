@@ -31,18 +31,18 @@ public class SolicitacaoCadastroController {
     private SolicitacaoCadastroService solicitacaoService;
 
     @PostMapping
-    public ResponseEntity<Object> criar(@Valid @RequestBody SolicitacaoCadastro entity) {
+    public ResponseEntity<Object> create(@Valid @RequestBody SolicitacaoCadastro entity) {
        try {
         var result = this.solicitacaoService.criar(entity);
         return ResponseEntity.status(201).body(result);
        } catch (Exception e) {
-        return ResponseEntity.status(500).body(e.getMessage());
+        return ResponseEntity.status(422).body(e.getMessage());
        }
         
     }
     
     @GetMapping
-    public ResponseEntity<Object> getALL() {
+    public ResponseEntity<Object> getAll() {
         try {
             List<SolicitacaoCadastro> result = this.solicitacaoService.getAll();
             return ResponseEntity.ok().body(result);

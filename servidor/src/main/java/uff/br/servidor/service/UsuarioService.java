@@ -43,7 +43,6 @@ public class UsuarioService {
         var password_hash = passwordEncoder.encode(usuario.getSenha_hash());
         usuario.setSenha_hash(password_hash);
         return usuarioRepository.save(usuario);
-
     }
 
     public Usuario atualizarUsuario(UUID id, Usuario usuarioAtualizado) {
