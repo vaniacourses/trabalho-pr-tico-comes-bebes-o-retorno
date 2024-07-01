@@ -8,9 +8,10 @@ interface ProdutoCardProps {
     nome: string;
     descricao: string;
     preco: number;
+    isAuthenticated:boolean;
 }
 
-export function ProdutoCard({ nome, descricao, id, preco }: ProdutoCardProps) {
+export function ProdutoCard({ nome, descricao, id, preco,isAuthenticated }: ProdutoCardProps) {
     const handleCarrinho = async () => {
         console.log(id);
         try {
@@ -46,7 +47,7 @@ export function ProdutoCard({ nome, descricao, id, preco }: ProdutoCardProps) {
             </CardContent>
             <CardFooter className="flex flex-row justify-between">
                 <p className="text-2xl">Preço: R$ <b>{preco}</b></p>
-                <Button className="text-green-600 bg-white border-2 border-green-600 hover:bg-green-600 hover:text-white" onClick={handleCarrinho}>Adicionar ao Carrinho</Button>
+                <Button className="text-green-600 bg-white border-2 border-green-600 hover:bg-green-600 hover:text-white" disabled={!isAuthenticated} onClick={handleCarrinho}>Adicionar ao Carrinho</Button>
             </CardFooter>
         </Card>
     );

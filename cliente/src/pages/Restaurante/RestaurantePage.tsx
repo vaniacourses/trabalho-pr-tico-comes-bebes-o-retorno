@@ -5,11 +5,12 @@ import { RestauranteResponse } from "@/models/Restaurante";
 import { useParams } from "react-router-dom";
 import { ProdutoCard } from "./ProdutoCard";
 import { useEffect } from "react";
+import { useAuthContext } from "@/hooks/useAuthContext";
 
 
 export function RestaurantePage(){
     const { restauranteId } = useParams();
-
+    const {isAuthenticated} = useAuthContext()
 
     useEffect(()=>{
         console.log(restauranteId)
@@ -33,6 +34,7 @@ export function RestaurantePage(){
                                     id={produto.id}
                                     preco={produto.preco}
                                     descricao={produto.descricao}
+                                    isAuthenticated = {isAuthenticated}
                                 />
                             ))
                             
