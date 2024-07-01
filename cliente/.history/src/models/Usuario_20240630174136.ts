@@ -23,7 +23,7 @@ export interface UsuarioResponse {
 
 export interface UsuarioLogin{
     cpf:string;
-    senha:string;
+    senha_hash:string;
 }
 
 export enum Role {
