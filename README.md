@@ -1,6 +1,6 @@
 # Comes&Bebes
 
-Projeto para construir um sistema de venda de bebidas e comidas parecido com o ifood
+O Comes&Bebes é um sistema de venda de produtos que oferece um cardápio de produtos(comidas e bebidas) de diversos restaurantes.
 
 ## 🚀 Começando
 
