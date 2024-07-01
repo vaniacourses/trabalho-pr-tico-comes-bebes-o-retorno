@@ -15,14 +15,8 @@ export function ProdutoCard({ nome, descricao, id, preco }: ProdutoCardProps) {
         console.log(id);
         try {
             const token = localStorage.getItem('acess-token');
-            if (!token) {
-                throw new Error("Token de acesso não encontrado");
-            }
-            console.log(token);
             const response = await axios.post(
-                'http://localhost:8080/pedido/carrinho/'+id,
-                {
-                },
+                'http://localhost:8080/pedido/adicionarCarrinho/'+id,
                 {
                     headers: {
                         'Authorization': token

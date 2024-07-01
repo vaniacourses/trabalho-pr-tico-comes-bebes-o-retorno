@@ -30,11 +30,8 @@ export function Header() {
             </>
           ) : (
             <>
-              <Link to="/historico-pedido">
+              <Link to="/historico-de-pedidos">
                 <Button>Histórico de Pedidos</Button>
-              </Link>
-              <Link to="/carrinho">
-                <Button>Carrinho</Button>
               </Link>
               <Button onClick={handleLogout}>
                 <Link to="/">Logout</Link>

@@ -8,12 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import uff.br.servidor.exceptions.BadRequestException;
 import uff.br.servidor.mapper.PedidoMapper;
-import uff.br.servidor.model.Pedido;
-import uff.br.servidor.model.ProdutoPedido;
-import uff.br.servidor.model.Status;
+import uff.br.servidor.model.*;
 import uff.br.servidor.providers.JwtProvider;
 import uff.br.servidor.repository.PedidoRepository;
 import uff.br.servidor.repository.ProdutoPedidoRepository;
+import uff.br.servidor.repository.ProdutoRepository;
 import uff.br.servidor.repository.UsuarioRepository;
 import uff.br.servidor.request.PedidoPostRequestBody;
 import uff.br.servidor.request.PedidoPutRequestBody;
@@ -31,6 +30,7 @@ public class PedidoService {
     @Autowired
     private JwtProvider jwtProvider;
     private final UsuarioRepository usuarioRepository;
+    private final ProdutoRepository produtoRepository;
 
     public Page<Pedido> findAll(Pageable pageable){
         return pedidoRepository.findAll(pageable);
@@ -46,6 +46,46 @@ public class PedidoService {
         List<ProdutoPedido> produtoPedidos = produtoPedidoRepository.findProdutoPedidoByPedido_Id(pedido.getId());
         pedido.setItens(produtoPedidos);
         return pedido;
+    }
+
+    public Pedido adicionarCarrinho(String token, UUID produto_id){
+        String userId = jwtProvider.validateToken(token);
+        Usuario user = usuarioRepository.findById(UUID.fromString(userId))
+                .orElseThrow(()-> new BadRequestException("id usuario nao encontrado"));
+        Produto produtoCarrinho = produtoRepository.findById(produto_id).orElseThrow(()->new BadRequestException("Id do produto nao encontrado"));
+        Pedido pedido = pedidoRepository.findByUsuario_IdAndStatus(UUID.fromString(userId), Status.ABERTO);
+        if (pedido == null){
+            Pedido pedidoCriado = pedidoRepository.save(
+                    Pedido.builder()
+                            .status(Status.ABERTO)
+                            .usuario(user)
+                            .build());
+            pedido = pedidoCriado;
+        }
+
+        ProdutoPedido produtoPedidoCriado  = produtoPedidoRepository.save(
+                ProdutoPedido.builder()
+                        .pedido(pedido)
+                        .produto(produtoCarrinho)
+                        .quantidade(1)
+                        .build()
+        );
+        List<ProdutoPedido> produtoPedidos = produtoPedidoRepository.findProdutoPedidoByPedido_Id(pedido.getId());
+        produtoPedidos.add(produtoPedidoCriado);
+        pedido.setItens(produtoPedidos);
+        return pedido;
+    }
+
+    public void deletarCarrinho(String token, UUID item_id){
+        String userId = jwtProvider.validateToken(token);
+        Usuario user = usuarioRepository.findById(UUID.fromString(userId))
+                .orElseThrow(()-> new BadRequestException("id usuario nao encontrado"));
+        produtoPedidoRepository.deleteById(item_id);
+        Pedido pedido = pedidoRepository.findByUsuario_IdAndStatus(UUID.fromString(userId), Status.ABERTO);
+        if( pedido.getItens() == null){
+            pedidoRepository.delete(pedido);
+        }
+
     }
 
     public Pedido salvar(PedidoPostRequestBody pedidoPostRequestBody){

@@ -20,12 +20,10 @@ export function ProdutoCard({ nome, descricao, id, preco }: ProdutoCardProps) {
             }
             console.log(token);
             const response = await axios.post(
-                'http://localhost:8080/pedido/carrinho/'+id,
-                {
-                },
+                'http://localhost:8080/pedido/carrinho/696dad7c-866f-460c-92c1-4932888d230c',
                 {
                     headers: {
-                        'Authorization': token
+                        'Authorization': `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZWNyZXQiLCJzdWIiOiJiNzUyYzIzYS1kOWMwLTQ1YTctYWNjOS1jODFkMjhhOTM2YTcifQ.l2CgsJUaZ82IiMA6wurscy5iP7l5mCU5zx8gXiy27DQ`
                     }
                 }
             );

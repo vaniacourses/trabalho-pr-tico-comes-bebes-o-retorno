@@ -22,10 +22,8 @@ export function ProdutoCard({ nome, descricao, id, preco }: ProdutoCardProps) {
             const response = await axios.post(
                 'http://localhost:8080/pedido/carrinho/'+id,
                 {
-                },
-                {
                     headers: {
-                        'Authorization': token
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             );

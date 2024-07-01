@@ -36,6 +36,26 @@ public class PedidoController {
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
+
+    @PostMapping("/carrinho/{produto_id}")
+    public ResponseEntity<Object> postCarrinho(@RequestHeader(name = "Authorization") String token,@PathVariable UUID produto_id) {
+        try {
+            var result  = pedidoService.adicionarCarrinho(token, produto_id);
+            return ResponseEntity.status(204).body(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/carrinho/{item_id}")
+    public ResponseEntity<Void> deleteCarrinho(@RequestHeader(name = "Authorization") String token,@PathVariable UUID item_id) {
+        try {
+            pedidoService.deletarCarrinho(token, item_id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     
 
     @GetMapping("/{cpf}")
