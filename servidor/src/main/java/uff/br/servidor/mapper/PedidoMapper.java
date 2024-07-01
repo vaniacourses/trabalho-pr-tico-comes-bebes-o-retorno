@@ -19,6 +19,7 @@ public class PedidoMapper {
                 .usuario(usuarioRepository.findById(pedidoPostRequestBody.getUsuario())
                         .orElseThrow(()-> new BadRequestException("Nome do usuario nao encontrado")))
                 .status(pedidoPostRequestBody.getStatus())
+                .situacaoPedido(pedidoPostRequestBody.getSituacaoPedido())
                 .build();
     }
 }

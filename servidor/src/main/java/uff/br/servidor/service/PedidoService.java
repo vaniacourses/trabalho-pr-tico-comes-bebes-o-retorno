@@ -17,7 +17,9 @@ import uff.br.servidor.repository.ProdutoPedidoRepository;
 import uff.br.servidor.repository.UsuarioRepository;
 import uff.br.servidor.request.PedidoPostRequestBody;
 import uff.br.servidor.request.PedidoPutRequestBody;
+import uff.br.servidor.state.AbertoState;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,6 +45,7 @@ public class PedidoService {
     public Pedido getCarrinho(String token){
         String userId = jwtProvider.validateToken(token);
         Pedido pedido = pedidoRepository.findByUsuario_IdAndStatus(UUID.fromString(userId), Status.ABERTO);
+        System.out.println(pedido);
         List<ProdutoPedido> produtoPedidos = produtoPedidoRepository.findProdutoPedidoByPedido_Id(pedido.getId());
         pedido.setItens(produtoPedidos);
         return pedido;
@@ -50,18 +53,36 @@ public class PedidoService {
 
     public Pedido salvar(PedidoPostRequestBody pedidoPostRequestBody){
         pedidoPostRequestBody.setStatus(Status.ABERTO);
+        pedidoPostRequestBody.setSituacaoPedido(new AbertoState());
         return pedidoRepository.save(pedidoMapper.toPedido(pedidoPostRequestBody));
     }
 
-    public void atualizar(PedidoPutRequestBody pedidoPutRequestBody){
-        Pedido pedidoSalvo = findByIdOrElse(pedidoPutRequestBody.getId());
-
-        pedidoSalvo.setUsuario(usuarioRepository.findById(pedidoPutRequestBody.getUsuario())
-                .orElseThrow(()-> new BadRequestException("Nome do usuario nao encontrado")));
-        pedidoSalvo.setStatus(Status.valueOf(pedidoPutRequestBody.getStatus()));
-
-        pedidoRepository.save(pedidoSalvo);
+    public Pedido nextStatus(UUID id){
+    Pedido pedido = pedidoRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Pedido não encontrado: " + id));
+       pedido.inicializarSituacaoPedido();
+       pedido.performAction();
+        return pedidoRepository.save(pedido);
     }
+
+
+    public Pedido cancelarPedido(UUID id){
+        Pedido pedido = pedidoRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Pedido não encontrado: " + id));
+           pedido.inicializarSituacaoPedido();
+           pedido.cancelAction();
+            return pedidoRepository.save(pedido);
+        }
+    
+    // public void atualizar(PedidoPutRequestBody pedidoPutRequestBody){
+    //     Pedido pedidoSalvo = findByIdOrElse(pedidoPutRequestBody.getId());
+
+    //     pedidoSalvo.setUsuario(usuarioRepository.findById(pedidoPutRequestBody.getUsuario())
+    //             .orElseThrow(()-> new BadRequestException("Nome do usuario nao encontrado")));
+    //     pedidoSalvo.setStatus(Status.valueOf(pedidoPutRequestBody.getStatus()));
+
+    //     pedidoRepository.save(pedidoSalvo);
+    // }
 
     public Pedido findByIdOrElse(UUID id){
         return pedidoRepository.findById(id).orElseThrow(()-> new BadRequestException("Id do pedido nao encontrado"));

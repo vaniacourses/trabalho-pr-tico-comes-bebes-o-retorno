@@ -13,6 +13,9 @@ import uff.br.servidor.service.PedidoService;
 
 import java.util.List;
 import java.util.UUID;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -53,11 +56,34 @@ public class PedidoController {
         return new ResponseEntity<>(pedidoService.salvar(pedidoPostRequestBody), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizar(@RequestBody PedidoPutRequestBody pedidoPutRequestBody){
-        pedidoService.atualizar(pedidoPutRequestBody);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+    @PostMapping("/status/{id}")
+    public ResponseEntity<Object> nextStatus(@PathVariable UUID id) {
+        try {
+            var result = pedidoService.nextStatus(id);
+            return ResponseEntity.status(200).body(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+        
     }
+
+    @PostMapping("/cancelar/{id}")
+    public ResponseEntity<Object> cancelarPedido(@PathVariable UUID id) {
+        try {
+            var result = pedidoService.cancelarPedido(id);
+            return ResponseEntity.status(200).body(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+        
+    }
+    
+    // @PutMapping
+    // public ResponseEntity<Void> atualizar(@RequestBody PedidoPutRequestBody pedidoPutRequestBody){
+    //     pedidoService.atualizar(pedidoPutRequestBody);
+    //     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable UUID id){
