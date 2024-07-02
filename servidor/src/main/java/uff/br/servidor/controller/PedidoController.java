@@ -51,7 +51,7 @@ public class PedidoController {
     }
 
     @DeleteMapping("/carrinho/{item_id}")
-    public ResponseEntity<Void> deleteCarrinho(@RequestHeader(name = "Authorization") String token,@PathVariable UUID item_id) {
+    public ResponseEntity<Void> deleteCarrinho(@RequestHeader(name = "Authorization") String token, @PathVariable UUID item_id) {
         try {
             pedidoService.deletarCarrinho(token, item_id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

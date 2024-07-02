@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
 import lombok.Data;
 
 import org.hibernate.annotations.DynamicInsert;
@@ -24,6 +25,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @Entity(name = "transacao")
 @DynamicUpdate
 @DynamicInsert
+@Builder
 public class Transacao {
     
     @Id

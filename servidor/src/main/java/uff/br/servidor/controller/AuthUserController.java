@@ -37,11 +37,11 @@ public class AuthUserController {
     
     @PostMapping("/registrar")
     public ResponseEntity<Object> salvarUsuario(@RequestBody RegisterUserDTO usuario) {
-        // try {
+        try {
             Usuario usuarioSalvo = authUserService.registrar(usuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
-        // } catch (Exception e) {
-        //     return ResponseEntity.status(422).body(e.getMessage());
-        // }
+        } catch (Exception e) {
+            return ResponseEntity.status(422).body(e.getMessage());
+        }
     }
 }
