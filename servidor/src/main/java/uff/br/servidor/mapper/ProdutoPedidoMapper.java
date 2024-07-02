@@ -17,8 +17,8 @@ public class ProdutoPedidoMapper {
     public ProdutoPedido toProdutoPedido(ProdutoPedidoPostRequestBody produtoPedidoPostRequestBody){
         return ProdutoPedido.builder()
                 .quantidade(produtoPedidoPostRequestBody.getQuantidade())
-                .produto(produtoRepository.findByNome(produtoPedidoPostRequestBody.getProduto())
-                        .orElseThrow(()-> new BadRequestException("Nome do produto nao encontrado")))
+                .produto(produtoRepository.findById(produtoPedidoPostRequestBody.getProduto_id())
+                        .orElseThrow(()-> new BadRequestException("Id do produto nao encontrado")))
                 .pedido(pedidoRepository.findById(produtoPedidoPostRequestBody.getPedido_id())
                         .orElseThrow(()-> new BadRequestException("Id do pedido nao encontrado")))
                 .build();

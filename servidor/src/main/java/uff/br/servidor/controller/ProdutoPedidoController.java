@@ -12,17 +12,24 @@ import uff.br.servidor.request.ProdutoPedidoPutRequestBody;
 import uff.br.servidor.request.ProdutoPostRequestBody;
 import uff.br.servidor.service.ProdutoPedidoService;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("produto_pedido")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class ProdutoPedidoController {
     private final ProdutoPedidoService produtoPedidoService;
 
     @GetMapping
     public ResponseEntity<Page<ProdutoPedido>> findAll(Pageable pageable){
         return new ResponseEntity<>(produtoPedidoService.findAll(pageable), HttpStatus.OK);
+    }
+
+    @GetMapping("/{pedidoId}")
+    public ResponseEntity<List<ProdutoPedido>> findProdutoPedidoByPedido_Id(@PathVariable UUID pedidoId){
+        return new ResponseEntity<>(produtoPedidoService.findProdutoPedidoByPedido_Id(pedidoId), HttpStatus.OK);
     }
 
     @PostMapping

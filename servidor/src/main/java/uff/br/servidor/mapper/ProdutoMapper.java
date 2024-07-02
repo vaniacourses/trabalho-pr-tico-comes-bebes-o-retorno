@@ -20,7 +20,7 @@ public class ProdutoMapper {
                 .descricao(produtoPostRequestBody.getDescricao())
                 .preco(produtoPostRequestBody.getPreco())
                 .estoque(produtoPostRequestBody.getEstoque())
-                .restaurante(restauranteRepository.findByNome(produtoPostRequestBody.getRestaurante())
+                .restaurante(restauranteRepository.findById(produtoPostRequestBody.getRestaurante_id())
                         .orElseThrow(()-> new BadRequestException("Nome do restaurante nao encontrado")))
                 .categoria(categoriaRepository.findByNome(produtoPostRequestBody.getCategoria())
                         .orElseThrow(() -> new BadRequestException("Nome da categoria nao encontrada")))

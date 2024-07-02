@@ -28,8 +28,8 @@ public class ProdutoService {
         return produtoRepository.findAll(pageable);
     }
 
-    public Page<Produto> findByNome(Pageable pageable, String nome){
-        return produtoRepository.findByNome(pageable, nome);
+    public Page<Produto> findById(Pageable pageable, UUID id){
+        return produtoRepository.findById(pageable, id);
     }
 
     public Page<Produto> findByCategoria(Pageable pageable, String categoria){
@@ -46,7 +46,7 @@ public class ProdutoService {
         produtoSalvo.setDescricao(produtoPutRequestBody.getDescricao());
         produtoSalvo.setPreco(produtoPutRequestBody.getPreco());
         produtoSalvo.setEstoque(produtoPutRequestBody.getEstoque());
-        produtoSalvo.setRestaurante(restauranteRepository.findByNome(produtoPutRequestBody.getNome())
+        produtoSalvo.setRestaurante(restauranteRepository.findById(produtoPutRequestBody.getRestaurante_id())
                 .orElseThrow(()-> new BadRequestException("Nome do restaurante nao encontrado")));
         produtoSalvo.setCategoria(categoriaRepository.findByNome(produtoPutRequestBody.getCategoria())
                 .orElseThrow(()-> new BadRequestException("Nome de categoria nao encontrada")));

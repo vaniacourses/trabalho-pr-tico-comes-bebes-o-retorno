@@ -1,11 +1,13 @@
-import { Header } from './components/Header'
+import { AuthProvider } from './context/AuthContext'
 import { AppRoutes } from './routes/routes'
 
 function App() {
 
   return (
     <>
-      <AppRoutes/>
+      <AuthProvider>
+        <AppRoutes/>
+      </AuthProvider>
     </>
   )
 }

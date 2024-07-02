@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -14,7 +16,7 @@ public class ProdutoPostRequestBody {
     private String descricao;
     private double preco;
     private int estoque;
-    private String restaurante;
+    private UUID restaurante_id;
     private String categoria;
 
 }

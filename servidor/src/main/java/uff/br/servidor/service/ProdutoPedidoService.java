@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import uff.br.servidor.exceptions.BadRequestException;
 import uff.br.servidor.mapper.ProdutoPedidoMapper;
-import uff.br.servidor.model.Pedido;
 import uff.br.servidor.model.ProdutoPedido;
 import uff.br.servidor.repository.PedidoRepository;
 import uff.br.servidor.repository.ProdutoPedidoRepository;
@@ -14,6 +13,7 @@ import uff.br.servidor.repository.ProdutoRepository;
 import uff.br.servidor.request.ProdutoPedidoPostRequestBody;
 import uff.br.servidor.request.ProdutoPedidoPutRequestBody;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,6 +29,9 @@ public class ProdutoPedidoService {
         return produtoPedidoRepository.findAll(pageable);
     }
 
+    public List<ProdutoPedido> findProdutoPedidoByPedido_Id(UUID id){
+        return produtoPedidoRepository.findProdutoPedidoByPedido_Id(id);
+    }
     public ProdutoPedido salvar(ProdutoPedidoPostRequestBody produtoPedidoPostRequestBody){
         return produtoPedidoRepository.save(produtoPedidoMapper.toProdutoPedido(produtoPedidoPostRequestBody));
     }
@@ -36,7 +39,7 @@ public class ProdutoPedidoService {
     public void atualizar(ProdutoPedidoPutRequestBody produtoPedidoPutRequestBody){
         ProdutoPedido produtoPedidoSalvo = findByIdOrElse(produtoPedidoPutRequestBody.getId());
 
-        produtoPedidoSalvo.setProduto(produtoRepository.findByNome(produtoPedidoPutRequestBody.getProduto())
+        produtoPedidoSalvo.setProduto(produtoRepository.findById(produtoPedidoPutRequestBody.getProduto_id())
                 .orElseThrow(()-> new BadRequestException("Nome do produto nao encontrado")));
         produtoPedidoSalvo.setQuantidade(produtoPedidoSalvo.getQuantidade());
         produtoPedidoSalvo.setPedido(pedidoRepository.findById(produtoPedidoPutRequestBody.getPedido_id())
